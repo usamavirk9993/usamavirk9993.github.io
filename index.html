@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usama Virk — Senior Full-Stack Developer</title>
+    <meta name="description" content="Senior Full-Stack Developer with 6 years building enterprise applications. Laravel, Vue.js, Node.js specialist serving international clients.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #0F1419;
+            --dark-blue: #1A2332;
+            --accent: #00D9FF;
+            --accent-orange: #FF6B35;
+            --text-primary: #E8EAED;
+            --text-secondary: #9CA3AF;
+            --bg-dark: #0A0E14;
+            --bg-card: #141821;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Work Sans', system-ui, -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 5px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            background: rgba(10, 14, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 0;
+            background: rgba(10, 14, 20, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 0 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 217, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .grid-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, #00FFB2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 90%;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-family: 'Work Sans', sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+            box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 217, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(0, 217, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            opacity: 0;
+            animation: fadeInRight 1s ease-out 0.4s forwards;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .profile-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .profile-bg {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: 30px;
+            bottom: 30px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2) 0%, rgba(255, 107, 53, 0.2) 100%);
+            border-radius: 20px;
+            filter: blur(40px);
+            z-index: -1;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 3rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        /* Expertise Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .expertise-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .expertise-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 217, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.1);
+        }
+
+        .expertise-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .expertise-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .expertise-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-item {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects-showcase {
+            display: grid;
+            gap: 4rem;
+        }
+
+        .project {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .project:nth-child(even) {
+            grid-template-columns: 0.8fr 1.2fr;
+        }
+
+        .project:nth-child(even) .project-content {
+            order: -1;
+        }
+
+        .project:hover {
+            border-color: rgba(0, 217, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-role {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-visual {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+        }
+
+        .project-visual-icon {
+            font-size: 5rem;
+            opacity: 0.6;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem 2rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateX(5px);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+        }
+
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            transform: translateX(8px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, #00FFB2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-details a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: var(--dark);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 3rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .project:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+
+            .project:nth-child(even) .project-content {
+                order: 0;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 5rem 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .project-metrics {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">U<span>V</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="grid-background"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-label">Senior Full-Stack Developer</div>
+                <h1 class="hero-title">
+                    Building <span class="highlight">Enterprise-Grade</span> Web Applications
+                </h1>
+                <p class="hero-subtitle">
+                    6 years transforming complex business requirements into scalable, production-ready solutions.
+                </p>
+                <p class="hero-description">
+                    Specialized in Laravel and Vue.js ecosystems, I architect and deliver full-stack applications 
+                    for clients across North America, Europe, and the Middle East. From high-traffic news platforms 
+                    to multi-vendor marketplaces processing hundreds of thousands in transactions—I build systems that scale.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">6+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100K+</span>
+                        <span class="stat-label">Daily Users</span>
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="#work" class="btn btn-primary">
+                        View My Work
+                        <span>→</span>
+                    </a>
+                    <a href="Usama_Virk_Resume.docx" download class="btn btn-secondary">
+                        Download Resume
+                        <span>↓</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-container">
+                    <div class="profile-bg"></div>
+                    <img src="profile.png" alt="Usama Virk" class="profile-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">What I Do</div>
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-description">
+                    Deep specialization in modern web technologies with a focus on performance, scalability, and maintainability.
+                </p>
+            </div>
+
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <span class="expertise-icon">⚡</span>
+                    <h3>Backend Architecture</h3>
+                    <p>
+                        Building robust, scalable APIs and server-side applications. Expert in Laravel ecosystem, 
+                        RESTful design, database optimization, and handling 10K+ concurrent users.
+                    </p>
+                    <div class="tech-list">
+                        <span class="tech-item">Laravel</span>
+                        <span class="tech-item">Lumen</span>
+                        <span class="tech-item">PHP</span>
+                        <span class="tech-item">Node.js</span>
+                        <span class="tech-item">Express</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <span class="expertise-icon">🎨</span>
+                    <h3>Frontend Development</h3>
+                    <p>
+                        Creating responsive, performant interfaces with modern JavaScript frameworks. 
+                        Reduced page load times by 60% and improved user engagement by 35% through optimization.
+                    </p>
+                    <div class="tech-list">
+                        <span class="tech-item">Vue.js</span>
+                        <span class="tech-item">React</span>
+                        <span class="tech-item">ES6+</span>
+                        <span class="tech-item">Tailwind</span>
+                        <span class="tech-item">Webpack</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <span class="expertise-icon">🗄️</span>
+                    <h3>Database Design</h3>
+                    <p>
+                        Architecting efficient database schemas and implementing caching strategies. 
+                        Optimized queries reducing response times from 850ms to 510ms at scale.
+                    </p>
+                    <div class="tech-list">
+                        <span class="tech-item">MySQL</span>
+                        <span class="tech-item">PostgreSQL</span>
+                        <span class="tech-item">MongoDB</span>
+                        <span class="tech-item">Redis</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <span class="expertise-icon">🚀</span>
+                    <h3>DevOps & Deployment</h3>
+                    <p>
+                        Setting up CI/CD pipelines, containerization, and cloud infrastructure. 
+                        Reduced deployment time from 2 hours to 15 minutes while maintaining 99.8% uptime.
+                    </p>
+                    <div class="tech-list">
+                        <span class="tech-item">Docker</span>
+                        <span class="tech-item">GitHub Actions</span>
+                        <span class="tech-item">AWS</span>
+                        <span class="tech-item">Linux</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <span class="expertise-icon">💳</span>
+                    <h3>Payment Integration</h3>
+                    <p>
+                        Implementing secure payment processing systems handling $500K+ monthly transactions. 
+                        Expert in Stripe, PayPal APIs, and PCI compliance.
+                    </p>
+                    <div class="tech-list">
+                        <span class="tech-item">Stripe</span>
+                        <span class="tech-item">PayPal</span>
+                        <span class="tech-item">Webhooks</span>
+                        <span class="tech-item">Security</span>
+                    </div>
+                </div>
+
+                <div class="expertise-card">
+                    <span class="expertise-icon">🌐</span>
+                    <h3>API Development</h3>
+                    <p>
+                        Designing and documenting RESTful APIs consumed by multiple platforms. 
+                        Built scalable endpoints serving millions of requests with comprehensive testing.
+                    </p>
+                    <div class="tech-list">
+                        <span class="tech-item">REST</span>
+                        <span class="tech-item">Postman</span>
+                        <span class="tech-item">Swagger</span>
+                        <span class="tech-item">Testing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="work">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Portfolio</div>
+                <h2 class="section-title">Featured Work</h2>
+                <p class="section-description">
+                    Selected projects demonstrating expertise in building scalable, production-grade applications.
+                </p>
+            </div>
+
+            <div class="projects-showcase">
+                <!-- Project 1: Adscarry -->
+                <div class="project">
+                    <div class="project-content">
+                        <div class="project-role">Full-Stack Development</div>
+                        <h3>Adscarry Marketplace</h3>
+                        <p class="project-description">
+                            Built a complete multi-vendor e-commerce platform from scratch, enabling 200+ sellers to 
+                            independently manage inventory, process orders, and receive automated payouts. Implemented 
+                            complex commission system, real-time checkout with Vue.js, and integrated multiple payment 
+                            gateways handling international transactions.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">200+</span>
+                                <span class="metric-label">Active Vendors</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">$50K+</span>
+                                <span class="metric-label">Monthly Volume</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">42%</span>
+                                <span class="metric-label">Conversion Rate</span>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-item">Laravel</span>
+                            <span class="tech-item">Vue.js</span>
+                            <span class="tech-item">MySQL</span>
+                            <span class="tech-item">Stripe</span>
+                            <span class="tech-item">PayPal</span>
+                            <span class="tech-item">Docker</span>
+                        </div>
+                        <a href="https://www.adscarry.com/" target="_blank" class="project-link">
+                            View Live Project →
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <span class="project-visual-icon">🛒</span>
+                    </div>
+                </div>
+
+                <!-- Project 2: Golf Saudi -->
+                <div class="project">
+                    <div class="project-content">
+                        <div class="project-role">Backend Lead & API Development</div>
+                        <h3>Golf Saudi Platform</h3>
+                        <p class="project-description">
+                            Architected backend infrastructure for a major sports platform serving international audiences. 
+                            Built role-based CMS for editorial teams, developed analytics APIs for real-time insights, 
+                            and coordinated with Saudi-based client team across time zones to deliver a robust content 
+                            management solution for 500+ articles and media assets.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">50K+</span>
+                                <span class="metric-label">Monthly Visitors</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">500+</span>
+                                <span class="metric-label">Articles Managed</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">99.9%</span>
+                                <span class="metric-label">Uptime</span>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-item">Laravel</span>
+                            <span class="tech-item">Vue.js</span>
+                            <span class="tech-item">MySQL</span>
+                            <span class="tech-item">AWS</span>
+                            <span class="tech-item">REST APIs</span>
+                        </div>
+                        <a href="https://golfsaudi.com" target="_blank" class="project-link">
+                            View Live Project →
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <span class="project-visual-icon">⛳</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: 24 News HD -->
+                <div class="project">
+                    <div class="project-content">
+                        <div class="project-role">Full-Stack Architecture</div>
+                        <h3>24 News HD Portal</h3>
+                        <p class="project-description">
+                            Engineered complete full-stack solution for high-traffic news platform handling 100K+ daily 
+                            pageviews. Implemented CDN integration reducing media load times by 65%, built real-time 
+                            publishing dashboard for journalists, and optimized database queries to handle traffic spikes 
+                            during breaking news without performance degradation.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">100K+</span>
+                                <span class="metric-label">Daily Views</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">65%</span>
+                                <span class="metric-label">Load Time Reduction</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">24/7</span>
+                                <span class="metric-label">Real-time Updates</span>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-item">Laravel</span>
+                            <span class="tech-item">Vue.js</span>
+                            <span class="tech-item">MySQL</span>
+                            <span class="tech-item">CDN</span>
+                            <span class="tech-item">Redis</span>
+                        </div>
+                        <a href="https://24newshd.tv" target="_blank" class="project-link">
+                            View Live Project →
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <span class="project-visual-icon">📰</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: Tuaja CMS -->
+                <div class="project">
+                    <div class="project-content">
+                        <div class="project-role">Full-Stack Development</div>
+                        <h3>Tuaja Content Management System</h3>
+                        <p class="project-description">
+                            Developed modular CMS supporting multiple user roles with granular permissions. Built admin 
+                            panels for page and media management, created Vue.js frontend for real-time content editing 
+                            with live previews, and designed flexible database schema allowing easy feature expansion. 
+                            System now manages extensive digital content library across multiple departments.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">Multi</span>
+                                <span class="metric-label">User Roles</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">Real-time</span>
+                                <span class="metric-label">Content Preview</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">Modular</span>
+                                <span class="metric-label">Architecture</span>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-item">Laravel</span>
+                            <span class="tech-item">Vue.js</span>
+                            <span class="tech-item">MySQL</span>
+                            <span class="tech-item">REST APIs</span>
+                        </div>
+                        <a href="https://tuaja.com" target="_blank" class="project-link">
+                            View Live Project →
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <span class="project-visual-icon">📝</span>
+                    </div>
+                </div>
+
+                <!-- Project 5: Custom Packaging Pro -->
+                <div class="project">
+                    <div class="project-content">
+                        <div class="project-role">Full-Stack Development</div>
+                        <h3>Custom Packaging Pro</h3>
+                        <p class="project-description">
+                            Built comprehensive packaging solutions platform featuring product catalog, quote request system, 
+                            and custom box design configurator. Implemented inquiry tracking with automated email notifications, 
+                            created dynamic Vue.js components for product customization, and optimized backend for streamlined 
+                            content management. Enhanced customer engagement through interactive design tools.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">Dynamic</span>
+                                <span class="metric-label">Customization</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">Auto</span>
+                                <span class="metric-label">Email Tracking</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">Vue.js</span>
+                                <span class="metric-label">Interactive UI</span>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-item">Laravel</span>
+                            <span class="tech-item">Vue.js</span>
+                            <span class="tech-item">MySQL</span>
+                            <span class="tech-item">REST APIs</span>
+                        </div>
+                        <a href="https://custompackagingpro.com" target="_blank" class="project-link">
+                            View Live Project →
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <span class="project-visual-icon">📦</span>
+                    </div>
+                </div>
+
+                <!-- Project 6: E-Commerce Admin Dashboard -->
+                <div class="project">
+                    <div class="project-content">
+                        <div class="project-role">Backend Development & API Design</div>
+                        <h3>E-Commerce Admin Dashboard</h3>
+                        <p class="project-description">
+                            Architected internal admin dashboard for comprehensive e-commerce management. Developed RESTful 
+                            endpoints for catalog operations, implemented CRUD interfaces for inventory management, and built 
+                            authentication system with role-based access control. Created responsive Laravel Blade layouts 
+                            enabling efficient product, order, and customer management workflows for administrative teams.
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">CRUD</span>
+                                <span class="metric-label">Full Operations</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">RBAC</span>
+                                <span class="metric-label">Security</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">REST</span>
+                                <span class="metric-label">API Design</span>
+                            </div>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-item">Laravel</span>
+                            <span class="tech-item">MySQL</span>
+                            <span class="tech-item">REST APIs</span>
+                            <span class="tech-item">Blade</span>
+                        </div>
+                        <a href="https://jesfemmes.com.ar" target="_blank" class="project-link">
+                            View Live Project →
+                        </a>
+                    </div>
+                    <div class="project-visual">
+                        <span class="project-visual-icon">📊</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="section-tag">Get In Touch</div>
+                    <h2>Let's Build Something Great Together</h2>
+                    <p>
+                        Currently available for remote opportunities with international teams. 
+                        Whether you need a senior developer for your product team or want to discuss a complex project, 
+                        I'm here to help bring your vision to life.
+                    </p>
+                    <div class="contact-methods">
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="/cdn-cgi/l/email-protection#087d7b6965697e617a6331313b486f65696164266b6765"><span class="__cf_email__" data-cfemail="dfaaacbeb2bea9b6adb4e6e6ec9fb8b2beb6b3f1bcb0b2">usamavirk993@gmail.com</span></a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <a href="tel:+923144356808">+92 314 4356808</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Lahore, Pakistan (Remote Worldwide)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/dev-usarnavirk" target="_blank" class="social-link">in</a>
+                        <a href="https://github.com/usamavirk9993" target="_blank" class="social-link">gh</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/mqedqplo" method="POST" style="background: var(--bg-dark); padding: 3rem; border-radius: 16px; border: 1px solid var(--border);">
+                        <div style="margin-bottom: 2rem;">
+                            <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: var(--text-primary);">Your Name</label>
+                            <input type="text" name="name" required style="width: 100%; padding: 1.2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 1rem; font-family: 'Work Sans', sans-serif;">
+                        </div>
+                        <div style="margin-bottom: 2rem;">
+                            <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: var(--text-primary);">Your Email</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 1.2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 1rem; font-family: 'Work Sans', sans-serif;">
+                        </div>
+                        <div style="margin-bottom: 2rem;">
+                            <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: var(--text-primary);">Message</label>
+                            <textarea name="message" required style="width: 100%; min-height: 180px; padding: 1.2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 1rem; font-family: 'Work Sans', sans-serif; resize: vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            Send Message
+                            <span>→</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Usama Virk. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p style="font-size: 0.9rem; margin-top: 1.5rem;">
+            Senior Full-Stack Developer • Laravel • Vue.js • Node.js
+        </p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.expertise-card, .project').forEach(el =>
